@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+     <meta charset="utf-8"/>
+	 <title>Careers at Diallonics</title>
+	 <link rel="stylesheet" type="text/css" href="../styles/main.css">
+	 <!-- 
+	 <link rel="stylesheet" type="text/css" href="../styles/todo/main.css">
+	 <link rel="stylesheet" type="text/css" href="../styles/todo/base.css">
+	 <link rel="stylesheet" type="text/css" href="../styles/todo/todo.css"> -->
+	 <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>	 
+   </head>
+   <body id="blogPage">
+       <header class="blogHeader pageHeader">
+	      <div id="banner"></div>
+          <div id="nav">
+		     <a href="../index.html"><div id="home">Home</div></a>
+			 <a href="PersonalAds.html"><div id="faq">TPA Offers</div></a>
+			 <a href="../ArtistDirectory.html"><div id="about">ArtistDirectory</div></a>
+			 <a href="BasicToDoList.html"><div id="careers">BasicToDoList</div></a>
+			 <a href="AdvancedToDoList.html"><div id="contact" style="background-color: #066DF9; color: #F7F500;">AdvancedToDoList</div></a>
+		  </div>
+	  </header>	  
+      <div id="contentWrapper">
+		 <article id="mainContent">
+		 	<h1>Just <em>To Do</em> It</h1>
+		 	<article class="post">
+		 	    <h2><a href="#">Keep track with our free app</a></h2>
+		 	    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non  mauris orci, quis tincidunt sapien. Vestibulum sodales est ut diam  tincidunt non bibendum dui cursus. Nulla blandit iaculis ipsum nec  ullamcorper. In mattis gravida magna et elementum.  </p>
+		 	</article>
+		 	      <div id="container">
+		 	      		<form name="form1" method="post" action="">
+		 	      			<input type="text" name="toDoItem" id="toDoItem" autofocus>
+		 	      			<input type="button" name="addToDo" id="addToDo" value="Add List Item">
+		 	      		</form>
+		 	            <ul id="theList" class="sortable list">
+		 	            </ul>
+		 	            <p id="doClearAll">
+			 	            <a href="javascript:void();" id="clearAll">Clear All</a> 
+		 	            </p>
+		 	      </div>
+		 </article>
+		 <aside  id="rightpane">
+		   <section class="info">
+				<div class="widget">
+					<h2>Search</h2>
+					<form>
+						<input type="search" id="searchField" placeHolder="Enter Keywords(s)" />
+						<input type="submit" id="search" name="search" value="" />
+					</form>
+				</div>
+				<div class="widget">
+				    <h2>Hot Links</h2>
+				    <ul>
+				    	<li><a href="#">Conference Schedule-At-A-Glance</a></li>
+				    	<li><a href="#">Another Page Title</a></li>
+				    	<li><a href="#">Yet Another Page Title</a></li>
+				    </ul>
+				</div>
+				<div class="widget">
+				     <h2>Archive</h2>
+				     <ul>
+				     	<li><a href="#">September</a></li>
+				     	<li><a href="#">August</a></li>
+				     	<li><a href="#">July</a></li>	
+				     	<li><a href="#">June</a></li>			     					     	
+				     </ul>
+				</div>
+				<div class="widget">
+					<h2>Categories</h2>
+					<ul>
+						<li><a href="#">Conference</a></li>
+						<li><a href="#">Events</a></li>
+						<li><a href="#">Student Life</a></li>
+						<li><a href="#">Zeitgeist</a></li>
+					</ul>
+				</div>
+		   </section>
+		</aside>
+	  </div>
+      <footer id="pageFooter" class="cf">Footer</footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="../lib/jquery/jquery.sortable.js"></script>
+		 <script type="text/javascript">
+			$(document).ready(function(){
+				var newListItem;
+				var newList = true;
+				var theList = document.getElementById('theList');
+				
+				
+				$('#addToDo').on('click',function(e){
+					e.preventDefault();
+					
+					if(newList == true){
+						var theValue = $('#toDoItem').val();
+						newListItem = '<li><span class="handle"> :: </span> <input class="listItem" value="'+ theValue +'"><a class="removeListItem" style="display:none;"> X </a></li>';
+						newList = false;						
+					}  else {
+						var theValue = $('#toDoItem').val();
+						newListItem = $('#theList li:last').clone();
+						newListItem.find('input').attr('value',theValue)
+					}
+					
+					var theCount = $('#theList li').length + 1;
+					
+					if(theCount > 1){
+						$('#doClearAll').css('display','block');
+					}
+					
+					$('#toDoItem').val('');
+					$('#toDoItem').focus();
+					
+					$('#theList').append(newListItem);
+					
+					$('.sortable').sortable('destroy');
+					$('.sortable').sortable({ 
+						handle : '.handle'
+					});
+					
+					localStorage.setItem('todoListPlus', theList.innerHTML);
+					
+				});
+				
+				$('input[type = "text"]').on('keydown', function(e){
+					var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+					if(key == 13){
+						e.preventDefault();
+						var inputs = $(this).closest('form').find(':input:visible');
+						inputs.eq(inputs.index(this)+1).focus();
+					}
+				});
+				
+				$('#theList').on('change', '.listItem', function(e){
+					currentValue = $(this).val();
+					$(this).attr('value', currentValue)
+					localStorage.setItem('todoListPlus', theList.innerHTML);
+				});
+
+				$('.sortable').sortable().bind('sortupdate', function() {
+					localStorage.setItem('todoListPlus', theList.innerHTML);
+				});
+
+				$('#theList').on('mouseover', 'li', function(){
+					var $thisA = $(this).find('a');
+					$thisA.css('display','block');
+				});
+
+				$('#theList').on('mouseout', 'li', function(){
+					var $thisA = $(this).find('a');
+					$thisA.css('display','none');
+				});
+
+				$('#theList').on('click', '.removeListItem', function(e){
+					e.preventDefault();
+					$(this).parent().remove();
+					localStorage.setItem('todoListPlus', theList.innerHTML);
+				});
+				
+				$('#doClearAll').on('click', '#clearAll', function(e){
+					e.preventDefault();
+					$('#theList').children().remove();
+					newList = true;
+					$('#toDoItem').val('');
+					localStorage.setItem('todoListPlus', theList.innerHTML);
+					$('#doClearAll').css('display','none');
+					$('#toDoItem').focus();
+				});
+
+				
+				loadToDo();
+				
+				function loadToDo(){
+					
+					if(localStorage.getItem('todoListPlus')){
+						theList.innerHTML = localStorage.getItem('todoListPlus');
+						
+						$('.sortable').sortable('destroy');
+						$('.sortable').sortable({
+							handle : '.handle'
+						})
+						
+						var theCount = $('#theList li').length + 1;
+						if(theCount >1){
+							$('#doClearAll').css('display','block');
+						}
+					}
+				} // End of loadToDo()
+			});
+		 </script>
+ 		  
+   </body>
+</html>

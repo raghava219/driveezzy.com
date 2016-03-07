@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+   <head> 
+     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+	 <title>TPA: Offers</title>
+	 <script type="text/javascript" src="../scripts/jquery-1.9.0.min.js"></script>
+	 <script type="text/javascript" src="../scripts/jquery.easing.1.3.js"></script>
+	 <script type="text/javascript" src="../scripts/modernizr.2.5.3.min.js"></script>
+	 <script type="text/javascript" src="../scripts/jcanvas.min.js"></script>
+	 <script type="text/javascript" src="../scripts/html5slider.js"></script>
+   <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+   <!-- <link rel="stylesheet" type="text/css" href="../styles/transitions.css" />  --> 
+	<script type="text/javascript">
+		/* $(document).read(function(){
+			//Check for local storage;
+			//if exists, set variables and hide form
+			var storedAge = localStorage.getItem('age');
+			var storedGender = localStorage.getItem('gender');
+                        // If form unsiubmitted do card flip
+                        if($('#specialOffer').hasClass('unsubmitted')){
+				$('.cardGroup.flip').hover();
+			}		
+		});*/
+		// Update text field for slider
+		function printValue(sliderID, textbox){
+                  var x = document.getElementById(textbox);
+		  var y = document.getElementById(sliderID);
+                  x.value = y.value;
+		}	
+		
+		window.onload = function(){
+                     printValue('age','rangeValue');
+		}
+	</script>
+   </head>
+   <body id="blogPage">
+     <header class="blogHeader pageHeader">
+	     <div id="banner">
+		   <img src="../images/banner.png" Style="width:900px; height: 100px;" useMap="#Map" />
+		   <!-- Below map element creates a hotspot on Banner image, it is usually done in Dream Viewer -->
+		   <map name="Map">
+		      <area shape="rect" coords="15,9,364,94" href="../index.html" alt="Click here to Navigate Home."> 
+		   </map>
+		 </div>
+		 <div id="nav">
+		     <a href="../index.html"><div id="home">Home</div></a>
+			 <a href="PersonalAds.html"><div id="faq" style="background-color: #066DF9; color: #F7F500;">TPA Offers</div></a>
+			 <a href="../ArtistDirectory.html"><div id="about">ArtistDirectory</div></a>
+			 <a href="BasicToDoList.html"><div id="careers">BasicToDoList</div></a>
+			 <a href="AdvancedToDoList.html"><div id="contact">AdvancedToDoList</div></a>
+ 		 </div>
+ 	</header>	 
+		 <div id="contentWrapper">
+			 <article id="maincontent">
+	                    <section>
+	                       <hgroup>
+	                            <h1>Mars is Open for Business!</h1>
+	                            <h2>Be among the first to visit the Red Planet</h2> 
+	                       </hgroup>
+	                          <p><img src="../images/mars.jpg" alt="Visit Mars!" width="200" height="200" class="imageLeft" /> Our Mars portal is now accepting flights! Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
+	          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? </p>
+	                         <p>&nbsp;</p>
+	                    </section>  
+	         </article>
+			 <aside id="rightpane">
+	                        <div id="outerOffer" class="carGroup flip">
+	                        <div id="specialOffer class="card unsubmitten"> 
+	                             <canvas id="myCanvas" width="200" height="200"></canvas>
+	        		     <div class="detail">
+					<p>Tell us just a little about yourself and we'll give you a special discount on one of our famous planetary packages!</p>
+					<form id="personalData" name="personalData" action="" method="post">
+						<p>
+						    <label><input type="radio" id="gender_0" value="male" name="gender" checked />Male </label>
+						    <label><input type="radio" id="gender_1" value="female" name="gender" />Female </label>
+						</p>
+						<p><label for="age">Age</label>
+						<input type="range" name="age" id="age" min="18" max="98" value="60" onchange="printValue('age','rangeValue')" />
+						<input id="rangeValue" type="text" />
+						</p>
+						<p id="buttonLine">
+						<input type="button" name="button" id="theButton" value="Get My Special Offer" />
+						</p>
+					</form>
+				     </div>	                      	  
+				</div>
+				<h2><a href="../index.html">Current TPA packages</a></h2>    
+			     </aside>  
+				<!-- End sideContent -->
+         </div>
+			<!-- End contentWrapper -->
+		 <footer id="pageFooter" class="cf">
+                   <p>Copyright &copy; 2054 Trans Planet Airlines LLC. All Right Reserved</p>
+   	         </footer>
+		<!-- End of footer-->
+	<!-- End outerWrapper-->	 
+   </body>
+</html>
