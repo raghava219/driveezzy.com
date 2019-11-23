@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body{
   /* background-color: #B0F0E7; */
+  box-sizing: border-box;
   background-image: url(../images/background.jpg);
   font: 12px/18px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
